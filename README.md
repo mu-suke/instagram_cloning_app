@@ -1,6 +1,8 @@
 # instagram_cloling_app
 
-A new Flutter application.
+Instagram clone app
+
+<img src="https://user-images.githubusercontent.com/45083522/110709738-064a9100-8240-11eb-8948-fee3cc2800b5.png" width=350 />
 
 ## Getting Started
 
