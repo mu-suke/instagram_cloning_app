@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'components/post.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -139,8 +141,14 @@ class _MyHomePageState extends State<MyHomePage> {
           )
         ),
       ),
-      body: Center(
-        child: Text('Home'),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Post(),
+            Post(),
+            Post(),
+          ],
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
