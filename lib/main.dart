@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_cloning_app/models/story.dart';
 
 import 'components/post.dart';
 
@@ -92,6 +93,41 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  List<Story> _stories = [
+    Story(
+        'assets/avatar.JPG',
+        'name1'
+    ),
+    Story(
+        'assets/avatar.JPG',
+        'name2'
+    ),
+    Story(
+        'assets/avatar.JPG',
+        'name3'
+    ),
+    Story(
+        'assets/avatar.JPG',
+        'name4'
+    ),
+    Story(
+        'assets/avatar.JPG',
+        'name4'
+    ),
+    Story(
+        'assets/avatar.JPG',
+        'name4'
+    ),
+    Story(
+        'assets/avatar.JPG',
+        'name4'
+    ),
+    Story(
+        'assets/avatar.JPG',
+        'name4'
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,44 +142,51 @@ class _MyHomePageState extends State<MyHomePage> {
           IconButton(icon: Icon(Icons.favorite_border), onPressed: null),
           IconButton(icon: Icon(Icons.send), onPressed: null),
         ],
-        bottom: PreferredSize(
-          preferredSize: Size(375, 50),
-          child: Row(
-            children: <Widget>[
-              CircleAvatar(
-                backgroundImage: AssetImage('assets/avatar.JPG'),
-              ),
-              CircleAvatar(
-                backgroundImage: AssetImage('assets/avatar.JPG'),
-              ),
-              CircleAvatar(
-                backgroundImage: AssetImage('assets/avatar.JPG'),
-              ),
-              CircleAvatar(
-                backgroundImage: AssetImage('assets/avatar.JPG'),
-              ),
-              CircleAvatar(
-                backgroundImage: AssetImage('assets/avatar.JPG'),
-              ),
-              CircleAvatar(
-                backgroundImage: AssetImage('assets/avatar.JPG'),
-              ),
-              CircleAvatar(
-                backgroundImage: AssetImage('assets/avatar.JPG'),
-              ),
-              CircleAvatar(
-                backgroundImage: AssetImage('assets/avatar.JPG'),
-              ),
-              CircleAvatar(
-                backgroundImage: AssetImage('assets/avatar.JPG'),
-              ),
-            ],
-          )
-        ),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
+            Container(
+              width: MediaQuery.of(context).size.width,
+              margin: EdgeInsets.symmetric(
+                vertical: 10
+              ),
+              height: 110,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true,
+                children: _stories.map((story) {
+                  return Column(
+                    children: <Widget>[
+                      Container(
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 10
+                        ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(70),
+                            border: Border.all(
+                                width: 3,
+                                color: Color(0xFF8e44ad)
+                            )
+                        ),
+                        child: Container(
+                          padding: const EdgeInsets.all(2),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(70),
+                            child: Image(
+                              image: AssetImage(story.image),
+                              width: 70,
+                              height: 70,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  );
+                }).toList(),
+              ),
+            ),
             Post(),
             Post(),
             Post(),
