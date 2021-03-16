@@ -36,22 +36,27 @@ class _MyHomePageState extends State<MyHomePage> {
   static const _footerItems = [
     {
       'icon': Icons.home_filled,
+      'activeIcon': Icons.home_filled,
       'name': 'ホーム',
     },
     {
       'icon': Icons.search,
+      'activeIcon': Icons.search,
       'name': 'さがす',
     },
     {
       'icon': Icons.movie_creation_outlined,
+      'activeIcon': Icons.movie_creation,
       'name': 'ホーム',
     },
     {
       'icon': Icons.shopping_bag_outlined,
+      'activeIcon': Icons.shopping_bag,
       'name': 'ホーム',
     },
     {
       'icon': Icons.person_outline,
+      'activeIcon': Icons.person,
       'name': 'マイページ',
     }
   ];
@@ -67,11 +72,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   BottomNavigationBarItem _updateActiveState(int index) {
     return BottomNavigationBarItem(
-        icon: Icon(
-          _footerItems[index]['icon'],
-          color: Colors.black87,
-        ),
-        label: _footerItems[index]['name'],
+      icon: Icon(
+        _footerItems[index]['activeIcon'],
+        color: Colors.black87,
+      ),
+      label: _footerItems[index]['name'],
     );
   }
 
@@ -87,45 +92,22 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _onItemTapped(int index) {
     setState(() {
-      _bottomNavigationBarItems[_selectedIndex] = _updateDeactiveState(_selectedIndex);
+      _bottomNavigationBarItems[_selectedIndex] =
+          _updateDeactiveState(_selectedIndex);
       _bottomNavigationBarItems[index] = _updateActiveState(index);
       _selectedIndex = index;
     });
   }
 
   List<Story> _stories = [
-    Story(
-        'assets/avatar.JPG',
-        'name1'
-    ),
-    Story(
-        'assets/avatar.JPG',
-        'name2'
-    ),
-    Story(
-        'assets/avatar.JPG',
-        'name3'
-    ),
-    Story(
-        'assets/avatar.JPG',
-        'name4'
-    ),
-    Story(
-        'assets/avatar.JPG',
-        'name4'
-    ),
-    Story(
-        'assets/avatar.JPG',
-        'name4'
-    ),
-    Story(
-        'assets/avatar.JPG',
-        'name4'
-    ),
-    Story(
-        'assets/avatar.JPG',
-        'name4'
-    ),
+    Story('assets/avatar.JPG', 'name1'),
+    Story('assets/avatar.JPG', 'name2'),
+    Story('assets/avatar.JPG', 'name3'),
+    Story('assets/avatar.JPG', 'name4'),
+    Story('assets/avatar.JPG', 'name4'),
+    Story('assets/avatar.JPG', 'name4'),
+    Story('assets/avatar.JPG', 'name4'),
+    Story('assets/avatar.JPG', 'name4'),
   ];
 
   @override
@@ -148,44 +130,90 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Container(
               width: MediaQuery.of(context).size.width,
-              margin: EdgeInsets.symmetric(
-                vertical: 10
-              ),
+              margin: EdgeInsets.symmetric(vertical: 10),
               height: 110,
               child: ListView(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                children: _stories.map((story) {
-                  return Column(
-                    children: <Widget>[
-                      Container(
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 10
-                        ),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(70),
-                            border: Border.all(
-                                width: 3,
-                                color: Color(0xFF8e44ad)
-                            )
-                        ),
-                        child: Container(
-                          padding: const EdgeInsets.all(2),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(70),
-                            child: Image(
-                              image: AssetImage(story.image),
-                              width: 70,
-                              height: 70,
-                              fit: BoxFit.cover,
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  children: <Widget>[
+                    Column(
+                      children: <Widget>[
+                        Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 10),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(70),
+                              border: Border.all(
+                                  width: 3, color: Color(0xFF8e44ad))),
+                          child: Stack(children: <Widget>[
+                            Container(
+                              padding: const EdgeInsets.all(2),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(70),
+                                child: Image(
+                                  image: AssetImage('assets/avatar.JPG'),
+                                  width: 70,
+                                  height: 70,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                             ),
-                          ),
+                            Positioned(
+                                right: 0,
+                                bottom: 0,
+                                child: Container(
+                                  width: 26,
+                                  height: 26,
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Colors.white),
+                                  child: Icon(
+                                    Icons.add_circle,
+                                    color: Colors.blue,
+                                    size: 26,
+                                  ),
+                                ))
+                          ]),
                         ),
-                      )
-                    ],
-                  );
-                }).toList(),
-              ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text('mu-suke')
+                      ],
+                    ),
+                    Row(
+                      children: _stories.map((story) {
+                        return Column(
+                          children: <Widget>[
+                            Container(
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(70),
+                                  border: Border.all(
+                                      width: 3, color: Color(0xFF8e44ad))),
+                              child: Container(
+                                padding: const EdgeInsets.all(2),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(70),
+                                  child: Image(
+                                    image: NetworkImage(
+                                        'https://unsplash.it/400/400'),
+                                    width: 70,
+                                    height: 70,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(story.name)
+                          ],
+                        );
+                      }).toList(),
+                    )
+                  ]),
             ),
             Post(),
             Post(),
@@ -204,4 +232,3 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-
